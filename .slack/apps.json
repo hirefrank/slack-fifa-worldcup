@@ -1,17 +1,11 @@
 {
   "apps": {
-    "hirefrank": {
-      "name": "hirefrank",
-      "app_id": "A04DB04R1S9",
-      "team_id": "T0TST8PPX",
-      "IsDev": false
-    },
     "slack-pde": {
       "name": "slack-pde",
-      "app_id": "A042KASRUSZ",
+      "app_id": "A04DB459LCD",
       "team_id": "T5J4Q04QG",
       "IsDev": false
     }
   },
-  "default": "hirefrank"
+  "default": "slack-pde"
 }
