@@ -1,5 +1,6 @@
 import { Manifest } from "deno-slack-sdk/mod.ts";
-import JoinWCChallengeWorkflow from "./workflows/join_wcc_workflow.ts";
+import { JoinWCChallengeWorkflow } from "./workflows/join_wcc_workflow.ts";
+import { ParticipantStore } from "./datastores/participant.ts";
 
 /**
  * The app manifest contains the app's configuration. This
@@ -9,9 +10,10 @@ import JoinWCChallengeWorkflow from "./workflows/join_wcc_workflow.ts";
 export default Manifest({
   name: "2022 FIFA World Cup Challenge",
   description:
-    "Pick the winners of the knockout stage & predict who will come out on top in the 2022 FIFA World Cup.",
-  icon: "assets/60x60bb.jpg",
+    "Pick the winners of the knockout stage & predict who will come out on top.",
+  icon: "assets/fifa-512.png",
   workflows: [JoinWCChallengeWorkflow],
+  datastores: [ParticipantStore],
   outgoingDomains: [],
   botScopes: [
     "commands",

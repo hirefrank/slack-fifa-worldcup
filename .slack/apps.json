@@ -1,21 +1,17 @@
 {
   "apps": {
-    "gffamilyhub": {
-      "name": "gffamilyhub",
-      "app_id": "A042FKG3FSS",
-      "team_id": "T01D35ENTK4"
-    },
-    "rodgarciaworkspace2": {
-      "name": "rodgarciaworkspace2",
-      "app_id": "A0145HHEV7U",
-      "enterprise_id": "E11BLTGP5",
-      "team_id": "T11BTHWBV"
+    "hirefrank": {
+      "name": "hirefrank",
+      "app_id": "A04DB04R1S9",
+      "team_id": "T0TST8PPX",
+      "IsDev": false
     },
     "slack-pde": {
       "name": "slack-pde",
       "app_id": "A042KASRUSZ",
-      "team_id": "T5J4Q04QG"
+      "team_id": "T5J4Q04QG",
+      "IsDev": false
     }
   },
-  "default": "rodgarciaworkspace2"
+  "default": "hirefrank"
 }

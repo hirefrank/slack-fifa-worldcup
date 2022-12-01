@@ -2,13 +2,13 @@ import { DefineWorkflow, Schema } from "deno-slack-sdk/mod.ts";
 import { saveParticipantToDatastore } from "../functions/save_participant.ts";
 
 // channel for discusing world cup challenge
-const discussionChannel = "C04DS0WL2UR";
+const discussionChannel = "C04CZEF7YBH";
 
-const JoinWCChallengeWorkflow = DefineWorkflow({
+export const JoinWCChallengeWorkflow = DefineWorkflow({
   callback_id: "join_wcc_workflow",
-  title: "2022 FIFA World Cup Challenge",
+  title: "World Cup Challenge",
   description:
-    "Pick the winners of the knockout stage & predict who will come out on top in the 2022 FIFA World Cup.",
+    "Join and we'll send you a bracket to fill out after the group stage ends Friday afternoon.",
   input_parameters: {
     properties: {
       participant: {
@@ -25,10 +25,9 @@ const JoinWCChallengeWorkflow = DefineWorkflow({
   },
 });
 
-const saveParticipant = JoinWCChallengeWorkflow.addStep(
+JoinWCChallengeWorkflow.addStep(
   saveParticipantToDatastore,
   {
-    id: crypto.randomUUID(),
     participant: JoinWCChallengeWorkflow.inputs.participant,
     fromChannel: JoinWCChallengeWorkflow.inputs.fromChannel,
   },
@@ -38,7 +37,7 @@ JoinWCChallengeWorkflow.addStep(
   Schema.slack.functions.InviteUserToChannel,
   {
     channel_id: discussionChannel,
-    user_id: saveParticipant.outputs.participant,
+    user_id: JoinWCChallengeWorkflow.inputs.participant,
   },
 );
 
@@ -47,8 +46,6 @@ JoinWCChallengeWorkflow.addStep(
   {
     channel_id: discussionChannel,
     message:
-      `:wave: :soccer: Welcome ${saveParticipant.outputs.participant} to the pitch!`,
+      `:wave: :soccer: Welcome <@${JoinWCChallengeWorkflow.inputs.participant}> to the pitch!`,
   },
 );
-
-export default JoinWCChallengeWorkflow;

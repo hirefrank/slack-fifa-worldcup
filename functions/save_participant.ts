@@ -7,9 +7,6 @@ export const saveParticipantToDatastore = DefineFunction({
   source_file: "functions/save_participant.ts",
   input_parameters: {
     properties: {
-      id: {
-        type: Schema.types.string,
-      },
       participant: {
         type: Schema.slack.types.user_id,
       },
@@ -18,7 +15,6 @@ export const saveParticipantToDatastore = DefineFunction({
       },
     },
     required: [
-      "id",
       "participant",
       "fromChannel",
     ],
@@ -28,27 +24,22 @@ export const saveParticipantToDatastore = DefineFunction({
 export default SlackFunction(
   saveParticipantToDatastore,
   async ({ inputs, client }) => {
-    const {
-      id,
-      participant,
-      fromChannel,
-    } = inputs;
     const putResponse = await client.apps.datastore.put({
       datastore: "wcc_participants",
       item: {
-        id: id,
-        participant: participant,
-        fromChannel: fromChannel,
+        id: crypto.randomUUID(),
+        participant: inputs.participant,
+        fromChannel: inputs.fromChannel,
       },
     });
 
     if (!putResponse.ok) {
       console.log("Error calling apps.datastore.put:");
+      console.log(putResponse);
     }
 
     return {
-      outputs: {},
+      outputs: putResponse,
     };
   },
 );
-

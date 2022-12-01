@@ -1,5 +1,5 @@
 import { Trigger } from "deno-slack-api/types.ts";
-import JoinWCChallengeWorkflow from "../workflows/join_wcc_workflow.ts";
+import { JoinWCChallengeWorkflow } from "../workflows/join_wcc_workflow.ts";
 
 /**
  * Triggers determine when Workflows are executed. A trigger
@@ -9,8 +9,9 @@ import JoinWCChallengeWorkflow from "../workflows/join_wcc_workflow.ts";
  */
 const linkTrigger: Trigger<typeof JoinWCChallengeWorkflow.definition> = {
   type: "shortcut",
-  name: "2022 FIFA World Cup Challenge",
-  description: "Pick the winners of the knockout stage & predict who will come out on top in the 2022 FIFA World Cup.",            
+  name: "World Cup Challenge",
+  description:
+    "Join and we'll send you a bracket to fill out after the group stage ends Friday afternoon.",
   workflow: "#/workflows/join_wcc_workflow",
   inputs: {
     participant: {
