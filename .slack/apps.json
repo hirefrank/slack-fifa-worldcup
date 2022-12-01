@@ -1,0 +1,21 @@
+{
+  "apps": {
+    "gffamilyhub": {
+      "name": "gffamilyhub",
+      "app_id": "A042FKG3FSS",
+      "team_id": "T01D35ENTK4"
+    },
+    "rodgarciaworkspace2": {
+      "name": "rodgarciaworkspace2",
+      "app_id": "A0145HHEV7U",
+      "enterprise_id": "E11BLTGP5",
+      "team_id": "T11BTHWBV"
+    },
+    "slack-pde": {
+      "name": "slack-pde",
+      "app_id": "A042KASRUSZ",
+      "team_id": "T5J4Q04QG"
+    }
+  },
+  "default": "rodgarciaworkspace2"
+}

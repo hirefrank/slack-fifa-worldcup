@@ -1,0 +1,19 @@
+# Learn more about this file at https://www.gitpod.io/docs/references/gitpod-yml
+image:
+  file: .gitpod.Dockerfile
+
+# List the start up tasks. https://www.gitpod.io/docs/config-start-tasks/
+tasks:
+    # always check to make sure we're running the latest version
+  - init: deno upgrade && slack --version && slack upgrade
+    
+    # auth if you aren't already authenticated
+    # run slack cloud if project exists
+    command: |
+      [ ! -f "/home/gitpod/.slack/credentials.json" ] && slack auth login
+      [ -f "/home/gitpod/slack.json" ] && slack cloud run
+
+# https://www.gitpod.io/docs/ides-and-editors/vscode-extensions
+vscode:
+  extensions:
+    - denoland.vscode-deno
