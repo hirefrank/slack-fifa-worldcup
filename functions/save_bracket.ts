@@ -1,17 +1,19 @@
 import { SlackFunction } from "deno-slack-sdk/mod.ts";
-import { saveParticipantToDatastore } from "../workflows/join_wcc_workflow.ts";
+import { saveBracketToDatastore } from "../workflows/bracket_submission.ts";
 
 export default SlackFunction(
-  saveParticipantToDatastore,
+  saveBracketToDatastore,
   async ({ inputs, client }) => {
     const putResponse = await client.apps.datastore.put({
-      datastore: "wcc_participants",
+      datastore: "brackets",
       item: {
         id: crypto.randomUUID(),
         participant: inputs.participant,
-        fromChannel: inputs.fromChannel,
+        bracket: inputs.bracket,
       },
     });
+
+    console.log(putResponse);
 
     if (!putResponse.ok) {
       console.log("Error calling apps.datastore.put:");

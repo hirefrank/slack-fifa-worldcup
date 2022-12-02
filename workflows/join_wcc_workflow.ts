@@ -1,8 +1,28 @@
-import { DefineWorkflow, Schema } from "deno-slack-sdk/mod.ts";
-import { saveParticipantToDatastore } from "../functions/save_participant.ts";
+import { DefineFunction, DefineWorkflow, Schema } from "deno-slack-sdk/mod.ts";
 
 // channel for discusing world cup challenge
 const discussionChannel = "C04CZEF7YBH";
+
+export const saveParticipantToDatastore = DefineFunction({
+  callback_id: "save_participant",
+  title: "Save participant info to datastore",
+  description: "Save participant info to datastore",
+  source_file: "functions/save_participant.ts",
+  input_parameters: {
+    properties: {
+      participant: {
+        type: Schema.slack.types.user_id,
+      },
+      fromChannel: {
+        type: Schema.slack.types.channel_id,
+      },
+    },
+    required: [
+      "participant",
+      "fromChannel",
+    ],
+  },
+});
 
 export const JoinWCChallengeWorkflow = DefineWorkflow({
   callback_id: "join_wcc_workflow",
