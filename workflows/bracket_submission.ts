@@ -96,7 +96,6 @@ const inputFormStep = BracketWorkflow.addStep(
           type: Schema.types.string,
           default: `${teams.B1} vs ${teams.A2}`,
         },
-        {},
         {
           name: "match_5",
           title: "Match 5",
