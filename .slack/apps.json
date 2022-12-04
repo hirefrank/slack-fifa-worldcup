@@ -3,6 +3,7 @@
     "slack-pde": {
       "name": "slack-pde",
       "app_id": "A04DB459LCD",
+      "enterprise_id": "E12KS1G65",
       "team_id": "T5J4Q04QG",
       "IsDev": false
     }

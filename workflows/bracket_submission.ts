@@ -1,7 +1,7 @@
 import { DefineFunction, DefineWorkflow, Schema } from "deno-slack-sdk/mod.ts";
 
 // channel for discusing world cup challenge
-const discussionChannel = "C04CZEF7YBH";
+const discussionChannel = "C04CZEF7YBH"; //C04DS0WL2UR //pde C04CZEF7YBH
 
 // knockout stage teams
 const teams = {
@@ -96,7 +96,6 @@ const inputFormStep = BracketWorkflow.addStep(
           type: Schema.types.string,
           default: `${teams.B1} vs ${teams.A2}`,
         },
-        {},
         {
           name: "match_5",
           title: "Match 5",
@@ -196,25 +195,8 @@ BracketWorkflow.addStep(
   saveBracketToDatastore,
   {
     participant: BracketWorkflow.inputs.participant,
-    bracket: `
-      ${inputFormStep.outputs.fields.feature_name},
-      ${inputFormStep.outputs.fields.match_1},
-      ${inputFormStep.outputs.fields.match_2},
-      ${inputFormStep.outputs.fields.match_3},
-      ${inputFormStep.outputs.fields.match_4},
-      ${inputFormStep.outputs.fields.match_5},
-      ${inputFormStep.outputs.fields.match_6},
-      ${inputFormStep.outputs.fields.match_7},
-      ${inputFormStep.outputs.fields.match_8},
-      ${inputFormStep.outputs.fields.quaterfinal_1},
-      ${inputFormStep.outputs.fields.quaterfinal_2},
-      ${inputFormStep.outputs.fields.quaterfinal_3},
-      ${inputFormStep.outputs.fields.quaterfinal_4},
-      ${inputFormStep.outputs.fields.quaterfinal_4},
-      ${inputFormStep.outputs.fields.semifinal_1},
-      ${inputFormStep.outputs.fields.semifinal_2},
-      ${inputFormStep.outputs.fields.third_place},
-      ${inputFormStep.outputs.fields.championship}`,
+    bracket:
+      `${inputFormStep.outputs.fields.match_1}-${inputFormStep.outputs.fields.match_2}-${inputFormStep.outputs.fields.match_3}-${inputFormStep.outputs.fields.match_4}-${inputFormStep.outputs.fields.match_5}-${inputFormStep.outputs.fields.match_6}-${inputFormStep.outputs.fields.match_7}-${inputFormStep.outputs.fields.match_8}-${inputFormStep.outputs.fields.quaterfinal_1}-${inputFormStep.outputs.fields.quaterfinal_2}-${inputFormStep.outputs.fields.quaterfinal_3}-${inputFormStep.outputs.fields.quaterfinal_4}-${inputFormStep.outputs.fields.semifinal_1}-${inputFormStep.outputs.fields.semifinal_2}-${inputFormStep.outputs.fields.third_place}-${inputFormStep.outputs.fields.championship}`,
   },
 );
 
