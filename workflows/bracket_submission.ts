@@ -1,7 +1,7 @@
 import { DefineFunction, DefineWorkflow, Schema } from "deno-slack-sdk/mod.ts";
 
 // channel for discusing world cup challenge
-const discussionChannel = "C04CZEF7YBH"; //C04DS0WL2UR //pde C04CZEF7YBH
+const discussionChannel = "C04DS0WL2UR"; //C04DS0WL2UR //pde C04CZEF7YBH
 
 // knockout stage teams
 const teams = {
