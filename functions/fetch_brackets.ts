@@ -7,10 +7,13 @@ export default SlackFunction(fetchBrackets, async ({ client }) => {
   });
 
   let message =
-    `*Winners: M1, M2, M3, M4, M5, M6, M7, M8, QF1, QF2, QF3, QF4, SF1, SF2, 3P, Finals* \n`;
+    `Parcipant: Slack User ID \n`;
 
   result.items.forEach((item) => {
     console.log(`${item.participant}-${item.bracket}`);
+    message = message.concat(
+        `<@${item.participant}>, ${item.participant} \n`,
+      );
     // const re = /-/g;
     // const itemFormatted = item.bracket.replace(re, ", ");
     // message = message.concat(
