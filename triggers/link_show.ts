@@ -10,8 +10,7 @@ import { fetchBrackets } from "../workflows/show_brackets.ts";
 const linkTrigger: Trigger<typeof fetchBrackets.definition> = {
   type: "shortcut",
   name: "World Cup Challenge",
-  description:
-    "Show everyone's backets for the knockout stage begins Saturday morning.",
+  description: "Show everyone's backets for the knockout stage.",
   workflow: "#/workflows/show_brackets",
 };
 

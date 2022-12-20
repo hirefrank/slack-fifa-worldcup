@@ -1,33 +1,22 @@
 import { SlackFunction } from "deno-slack-sdk/mod.ts";
 import { fetchBrackets } from "../workflows/show_brackets.ts";
 
-export default SlackFunction(
-  fetchBrackets,
-  async ({ client }) => {
-    const result = await client.apps.datastore.query({
-      datastore: "brackets",
-    });
+export default SlackFunction(fetchBrackets, async ({ client }) => {
+  const result = await client.apps.datastore.query({
+    datastore: "brackets",
+  });
 
-    let message =
-      `Participant \t | M1 \t | M2 \t | M3 \t | M4 \t | M5 \t | M6 \t | M7 \t | M8 \t | QF1 \t | QF2 \t | QF3 \t | QF4 \t | SF1 \t | SF2 \t | 3P \t | Championship \t \t    \n`;
+  let message =
+    `*Winners: M1, M2, M3, M4, M5, M6, M7, M8, QF1, QF2, QF3, QF4, SF1, SF2, 3P, Finals* \n`;
 
-    result.items.forEach((item) => {
-      const re = /-/g;
-      const itemFormatted = item.bracket.replace(re, " \t | ");
-      message = message.concat(
-        `${item.participant} \t | ${itemFormatted}`,
-      );
-    });
+  result.items.forEach((item) => {
+    console.log(`${item.participant}-${item.bracket}`);
+    // const re = /-/g;
+    // const itemFormatted = item.bracket.replace(re, ", ");
+    // message = message.concat(
+    //   `<@${item.participant}>, ${itemFormatted} \n`,
+    // );
+  });
 
-    if (!result.ok) {
-      console.log("Error calling apps.datastore.query:");
-      console.log(result);
-    } else {
-      console.log(message);
-    }
-
-    return {
-      outputs: result,
-    };
-  },
-);
+  return { outputs: { message } };
+});
